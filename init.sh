@@ -1,6 +1,6 @@
 #!/bin/bash
-docker compose up
-docker exec -it laravel-laravel-1 /bin/bash
+#docker compose up
+#docker exec -it laravel-laravel-1 /bin/bash
 
 
 composer --version

@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     git \
     zip \
     unzip \
+#    source \
     && docker-php-ext-install pdo_pgsql \
     && apt-get clean
 
@@ -12,7 +13,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN mkdir /scripts
 
-COPY ./init.sh /scripts/init.sh
+#COPY ./init.sh /scripts/init.sh
 
 COPY ./init.sh /scripts/
 
@@ -28,4 +29,6 @@ EXPOSE 8000
 
 CMD ["php-fpm"]
 
-CMD ["source", "/init.sh"]
+WORKDIR /scripts
+
+#CMD ["source /scripts/init.sh"]
