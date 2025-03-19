@@ -10,9 +10,15 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-COPY ./init.sh /
+RUN mkdir /scripts
+
+COPY ./init.sh /scripts/init.sh
+
+COPY ./init.sh /scripts/
 
 ENV PATH "$PATH:/root/.composer/vendor/bin"
+
+#ENV PATH "$PATH:/root/.config/composer/vendor/bin"
 
 WORKDIR /var/www
 
@@ -22,3 +28,4 @@ EXPOSE 8000
 
 CMD ["php-fpm"]
 
+CMD ["source", "/init.sh"]
