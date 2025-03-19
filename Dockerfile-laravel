@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+COPY ./init.sh /
+
+ENV PATH "$PATH:/root/.composer/vendor/bin"
+
 WORKDIR /var/www
 
 RUN composer global require laravel/installer
@@ -17,3 +21,4 @@ RUN composer global require laravel/installer
 EXPOSE 8000
 
 CMD ["php-fpm"]
+
