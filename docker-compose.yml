@@ -1,0 +1,32 @@
+services:
+  postgresdb:
+    build:
+      context: .
+      dockerfile: Dockerfile-postgresdb
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - laravel_network
+    ports:
+      - "5432:5432"
+
+  laravel:
+    build:
+      context: .
+      dockerfile: Dockerfile-laravel
+    volumes:
+      - .:/var/www
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgresdb
+    networks:
+      - laravel_network
+
+networks:
+  laravel_network:
+
+volumes:
+  postgres_data:
