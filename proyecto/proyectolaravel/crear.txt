@@ -1,0 +1,10 @@
+Para instalar laravel (una vez instalado composer) es: composer global require laravel/installer
+Para crear el proyecto: laravel new
+
+
+
+
+
+
+
+
