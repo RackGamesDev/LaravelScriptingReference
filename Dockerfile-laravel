@@ -1,27 +1,41 @@
 FROM php:8.1-fpm
 
 RUN apt-get update && apt-get install -y \
+    build-essential \
     libpq-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    locales \
     git \
+    jpegoptim optipng pngquant gifsicle \
+    vim \
     zip \
     unzip \
 #    source \
     && docker-php-ext-install pdo_pgsql \
     && apt-get clean
 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 RUN mkdir /scripts
+
+RUN mkdir /proyectos
 
 #COPY ./init.sh /scripts/init.sh
 
 COPY ./init.sh /scripts/
 
-ENV PATH "$PATH:/root/.composer/vendor/bin"
+COPY ./proyecto/* /proyectos/
+
+#ENV PATH "$PATH:/root/.composer/vendor/bin"
 
 #ENV PATH "$PATH:/root/.config/composer/vendor/bin"
 
 WORKDIR /var/www
+
+RUN composer create-project --prefer-dist laravel/laravel . "12.*"
 
 RUN composer global require laravel/installer
 

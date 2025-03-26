@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-#Por defecto todas las rutas aqui especificadas seran publicas
-Route::get('/', function () {
-    return view('welcome');
+#Archivo personalizado de rutas, hay que especificarlo en bootstrap/app.php
+Route::get('/ruta', function () {
+    #return view('welcome');
+    return "ok";
 });

@@ -1,10 +1,25 @@
 Para instalar laravel (una vez instalado composer) es: composer global require laravel/installer
 Para crear el proyecto: laravel new
+Para iniciarlo: php artisan serve --host=0.0.0.0 --port=8000
+Para declararla como mantenimiento (inaccesible): php artisan down/up
 
+Partes del proyecto
+    .env : configuracion del proyecto
+    composer.json : paquetes del proyecto
+    package.json : configuracion de vite
+    phpunit.xml : configuracion de los tests
+    vite.config.js : mas configuracion de vite
+    test/ : los test a ejecutar en la aplicacion
+    storage/ : distintas carpetas de almacenamiento (normalmente contenido estatico)
+    routes/*.php : archivos que especifican las rutas http
+    resources/* : carpetas para contenido estatico de css, js y html(que en realidad son vistas .blade.php)
+    public/ : archivos estaticos accesibles desde una ruta
+    database/factories : clases para cada tabla de la base de datos
+    database/migrations : las migraciones para hacer la base de datos
+    database/seeders : archivos php para insertar los datos (de ejemplo)
+    config/* : configuracion de la aplicacion
+    bootstrap/ y app/ : utilidades varias
+    app/Models : clases modelo para los objetos de la base de datos
+    app/Http/Controllers : en cuanto al modelo mvc, aqui estan los controladores
 
-
-
-
-
-
-
+Se pueden crear mas archivos .php en routes/ para agrupar las rutas segun funcionalidad
